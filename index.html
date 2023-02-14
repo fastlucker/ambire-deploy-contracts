@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="./js/lib/vue.min.js"></script>
+
+		<title>Ambire contracts deployer</title>
+		<meta charset="UTF-8">
+		<meta name="title" content="Ambire contracts deployer">
+		<meta name="description" content="Ambire contracts deployer">
+
+		<link rel="stylesheet" href="./style.css?ver=2">
+	</head>
+
+	<body>
+        <div id="app">
+		    <button v-if="!web3.fatalErr && !web3.account" v-on:click.stop="connect()" :disabled="web3.pending">Connect Metamask</button>
+            <div>
+                <span>Address: </span>
+                <span>{{web3.account}}</span>
+            </div>
+            <div>
+                <span>ChainID: </span>
+                <span>{{parseInt(chainId)}}</span>
+            </div>
+            <div>
+                <span>Current Nonce: </span>
+                <span>{{nonce}}</span>
+            </div>
+            <div>
+                <span>Current Txns: </span>
+                <span>{{currentTxn}}</span>
+            </div>
+            <button v-if="web3.account" v-on:click.stop="deploy()" :disabled="web3.pending">Копче</button>
+            <button v-if="web3.account" v-on:click.stop="getNonce()" :disabled="web3.pending">GetNonce</button>
+		    <script src="./js/main.js?v=7"></script>
+	    </div>
+    </body>
+</html>
